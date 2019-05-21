@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1558440610 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\main.c
+	<stdio.h>
+	<stdlib.h>
+	"versionPunteros.h"
+	"versionMatriz.h"
+
+1558013413 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionpunteros.c
+
+1558013896 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionmatriz.c
+
+1558014355 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionmatriz.c
+	<stdlib.h>
+	<stdio.h>
+
+1558440653 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionpunteros.c
+	<stdlib.h>
+	<stdio.h>
+
+1558014234 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionmatriz.h
+
+1558440604 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase1-reina\versionpunteros.h
+

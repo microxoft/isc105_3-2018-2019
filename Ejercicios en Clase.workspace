@@ -2,5 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="Clase1-Matrices/Clase1-Matrices.cbp" />
+		<Project filename="Clase1-PosicionesReina/Clase1-PosicionesReina.cbp" />
+		<Project filename="Clase1-Reina/Clase1-Reina.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

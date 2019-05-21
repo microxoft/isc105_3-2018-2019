@@ -1,0 +1,1 @@
+void mainPunteros(int, int);
