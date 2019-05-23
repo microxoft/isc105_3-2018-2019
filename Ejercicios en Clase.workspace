@@ -3,6 +3,7 @@
 	<Workspace title="Workspace">
 		<Project filename="Clase1-Matrices/Clase1-Matrices.cbp" />
 		<Project filename="Clase1-PosicionesReina/Clase1-PosicionesReina.cbp" />
+		<Project filename="Clase1-PunteroValores/Clase1-PunteroValores.cbp" />
 		<Project filename="Clase1-Reina/Clase1-Reina.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
