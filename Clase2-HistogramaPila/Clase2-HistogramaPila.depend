@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1558725027 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-histogramapila\main.c
+	<stdio.h>
+	<stdlib.h>
+	"PilaEstatica.h"
+
+1558722437 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-histogramapila\pilaestatica.h
+	<stdlib.h>
+
+1558723444 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-histogramapila\pilaestatica.c
+	<stdio.h>
+	<string.h>
+	"PilaEstatica.h"
+

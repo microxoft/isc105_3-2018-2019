@@ -5,5 +5,12 @@
 		<Project filename="Clase1-PosicionesReina/Clase1-PosicionesReina.cbp" />
 		<Project filename="Clase1-PunteroValores/Clase1-PunteroValores.cbp" />
 		<Project filename="Clase1-Reina/Clase1-Reina.cbp" />
+		<Project filename="Clase2-HistogramaPila/Clase2-HistogramaPila.cbp" />
+		<Project filename="Clase2-Monticulos/Clase2-Monticulos.cbp" />
+		<Project filename="Clase2-MemoriaDisponible/Clase2-MemoriaDisponible.cbp" />
+		<Project filename="Clase-Colas/Clase-Colas.cbp" />
+		<Project filename="Practica1_Prob2/Practica1_Prob2.cbp" />
+		<Project filename="Practica1_Prob1/Practica1_Prob1.cbp" />
+		<Project filename="Clase3_PilasEnlazada/Clase3_PilasEnlazada.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

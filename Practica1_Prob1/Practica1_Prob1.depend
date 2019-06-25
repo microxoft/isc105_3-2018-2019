@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1560866498 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica1_prob1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"PilaTripe.h"
+
+1560860870 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica1_prob1\pilatripe.h
+	<stdlib.h>
+
+1560866416 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica1_prob1\pilatriple.c
+	<stdlib.h>
+	"PilaTripe.h"
+

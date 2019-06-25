@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1559654543 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica1_prob2\colas.c
+	<stdlib.h>
+	"Colas.h"
+
+1559654223 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica1_prob2\colas.h
+	<stdlib.h>
+

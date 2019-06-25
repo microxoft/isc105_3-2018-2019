@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1559055366 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-monticulos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Monticulo.h"
+
+1559055045 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-monticulos\monticulo.h
+	<stdlib.h>
+
+1559055070 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase2-monticulos\monticulo.c
+	<stdlib.h>
+	<math.h>
+	"Monticulo.h"
+

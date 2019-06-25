@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1559654543 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase-colas\colas.c
+	<stdlib.h>
+	"Colas.h"
+
+1559654223 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase-colas\colas.h
+	<stdlib.h>
+
+1559658860 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase-colas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Colas.h"
+	"conio.c"
+
+1286690350 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase-colas\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1286690424 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase-colas\conio.h
+	<stdio.h>
+
