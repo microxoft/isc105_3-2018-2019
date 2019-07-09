@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1562247665 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase4_peliculas\main.c
+	<ctype.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"conio.h"
+	"ListaDobleCircular.h"
+
+1286690350 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase4_peliculas\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1286690424 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase4_peliculas\conio.h
+	<stdio.h>
+
+1562246499 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase4_peliculas\listadoblecircular.c
+	<stdlib.h>
+	"ListaDobleCircular.h"
+
+1561471032 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase4_peliculas\listadoblecircular.h
+	<stdlib.h>
+
