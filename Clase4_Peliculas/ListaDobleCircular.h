@@ -10,6 +10,7 @@ typedef struct
     char *Clasificacion;
     float Calificacion;
     float Duracion;
+    int CantidadGeneros;
     char **Generos;
     char *Sinopsis;
 }Pelicula;
@@ -28,10 +29,18 @@ typedef struct
 }Lista;
 
 Lista* InicializarLista();
-void AgregarPelicula(Lista*, Pelicula);
-void EliminarPelicula(Lista*, int);
+void AgregarPelicula(Pelicula, Nodo*);
+void EliminarPelicula(Lista*, Nodo*);
 void InsertarPelicula(Lista*, Pelicula, int);
-Nodo* BuscarPelicula(Lista*, int);
-Lista* OrdenarPelicula(Lista*);
+Nodo* BuscarPorId(Lista*, int);
+Nodo* BuscarPorAnyo(Lista*, int);
+Lista* OrdenarPeliculaSeleccion(Lista*);
+Nodo* CopiarNodo(Nodo*);
+void Intercambiar(Nodo*, Nodo*);
 
 #endif // _LISTADOBLECIRCULARH
+
+
+
+
+

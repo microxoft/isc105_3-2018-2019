@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1562874491 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica2_prob1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LISTA.h"
+
+1562873381 z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica2_prob1\lista.h
+
+1562874289 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\practica2_prob1\lista.c
+	"LISTA.h"
+	<stdlib.h>
+

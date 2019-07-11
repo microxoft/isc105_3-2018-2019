@@ -13,17 +13,21 @@ typedef enum
     Eliminar,
     Insertar,
     Explorar,
-    Ordenar,
-    Buscar
+    Buscar,
+    Ordenar
 }eSeleccionMenu;
 
 void MostrarMarco();
 void MostrarMarco3Columnas();
 eSeleccionMenu MostrarMenu();
-void AgregarNuevaPelicula(Lista*);
-void ExplorarPeliculas(Lista*);
+void CapturarPelicula(Lista*, Nodo*, short);
+void ExplorarPeliculas(Lista*, Nodo*);
 void MostrarPeliculaEnColumna(Pelicula, int);
 void MostrarSinopsis(int col, int fila, int limite, char *texto);
+void ModificarPelicula(Lista*);
+void BorrarPelicula(Lista*);
+void BuscarPeliculaPorAnyo(Lista*);
+void OrdenarPeliculasPorAnyo(Lista*);
 const int COL2 = 26, COL3 = 51, LIMCOLUMNA = 24;
 
 int main()
@@ -37,20 +41,25 @@ int main()
         switch(opcionActual)
         {
             case Agregar:
-                AgregarNuevaPelicula(listadoPeliculas);
+                CapturarPelicula(listadoPeliculas, NULL, 0);
                 break;
             case Modificar:
+                ModificarPelicula(listadoPeliculas);
                 break;
             case Eliminar:
+                BorrarPelicula(listadoPeliculas);
                 break;
             case Insertar:
+                CapturarPelicula(listadoPeliculas, NULL, 1);
                 break;
             case Explorar:
-                ExplorarPeliculas(listadoPeliculas);
-                break;
-            case Ordenar:
+                ExplorarPeliculas(listadoPeliculas, NULL);
                 break;
             case Buscar:
+                BuscarPeliculaPorAnyo(listadoPeliculas);
+                break;
+            case Ordenar:
+                OrdenarPeliculasPorAnyo(listadoPeliculas);
                 break;
         }
     }while(opcionActual != Salir);
@@ -121,7 +130,7 @@ eSeleccionMenu MostrarMenu()
     return seleccion;
 }
 
-void AgregarNuevaPelicula(Lista *listado)
+void CapturarPelicula(Lista *listado, Nodo *aModificar, short enOrden)
 {
     short generosSeleccionados[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     int seleccion, i, j=0;
@@ -129,10 +138,19 @@ void AgregarNuevaPelicula(Lista *listado)
     system("cls");
     MostrarMarco();
     gotoxy(10,3);
-    printf("Agregando nueva pel%cula al final de la lista.", 161);
+    if(aModificar == NULL)
+        printf("Agregando nueva pel%cula al final de la lista.", 161);
+    else
+        printf("Modificando Pel%ccula Existente.", 161);
     gotoxy(5,7);
     printf("Id: ");
-    scanf("%d", &nuevaPelicula.Id);
+    if(aModificar != NULL)
+    {
+        printf("%d", aModificar->data.Id);
+        nuevaPelicula.Id = aModificar->data.Id;
+    }
+    else
+        scanf("%d", &nuevaPelicula.Id);
     gotoxy(5,9);
     printf("T%ctulo (hasta 100 letras): ", 161);
     nuevaPelicula.Titulo = (char*)malloc(100);
@@ -205,16 +223,24 @@ void AgregarNuevaPelicula(Lista *listado)
             seleccion = getch() - 48;
         }while(seleccion < 0 || seleccion > 9);
 
-        if(seleccion != 0)
-            generosSeleccionados[seleccion - 1] = generosSeleccionados[seleccion - 1] > 0 ? 0 : 1;
+        if(seleccion != 0 && generosSeleccionados[seleccion - 1] > 0)
+        {
+            generosSeleccionados[seleccion - 1] = 0;
+            j--;
+        }
+        else if(seleccion != 0 && generosSeleccionados[seleccion - 1] <= 0)
+        {
+            generosSeleccionados[seleccion - 1] = 1;
+            j++;
+        }
     }while(seleccion != 0);
 
-    nuevaPelicula.Generos = (char**)malloc(sizeof(char*)*9);
+    nuevaPelicula.CantidadGeneros = j;
+    nuevaPelicula.Generos = (char**)malloc(sizeof(char*)*j);
     for(i=0, j=0; i<9; i++)
     {
         if(generosSeleccionados[i])
         {
-            nuevaPelicula.Generos = (char**)realloc(nuevaPelicula.Generos, j+1);
             *(nuevaPelicula.Generos+j) = (char*)calloc(20, sizeof(char));
             switch(i)
             {
@@ -255,7 +281,17 @@ void AgregarNuevaPelicula(Lista *listado)
     fflush(stdin);
     gets(nuevaPelicula.Sinopsis);
 
-    AgregarPelicula(listado, nuevaPelicula);
+    if(aModificar == NULL && !enOrden)
+        AgregarPelicula(nuevaPelicula, listado->Cabeza->anterior);
+    else if(aModificar == NULL && enOrden)
+    {
+        Nodo *despuesDe = BuscarPorAnyo(listado, nuevaPelicula.Anyo);
+        AgregarPelicula(nuevaPelicula, despuesDe);
+    }
+    else
+    {
+        aModificar->data = nuevaPelicula;
+    }
 }
 
 void MostrarMarco3Columnas()
@@ -297,10 +333,14 @@ void MostrarMarco3Columnas()
     printf("%c\n", 188); // Esquina inferior derecha.
 }
 
-void ExplorarPeliculas(Lista *listado)
+void ExplorarPeliculas(Lista *listado, Nodo *aConsultar)
 {
     char seleccion;
-    Nodo *nodoActual = listado->Cabeza->siguiente;
+    Nodo *nodoActual;
+    if(aConsultar == NULL)
+        nodoActual = listado->Cabeza->siguiente;
+    else
+        nodoActual = aConsultar;
 
     do
     {
@@ -312,6 +352,31 @@ void ExplorarPeliculas(Lista *listado)
             break;
         }
         MostrarPeliculaEnColumna(nodoActual->data, 2);
+        if(nodoActual->anterior->data.Id == -1)
+            MostrarPeliculaEnColumna(nodoActual->anterior->anterior->data, 1);
+        else
+            MostrarPeliculaEnColumna(nodoActual->anterior->data, 1);
+
+        if(nodoActual->siguiente->data.Id == -1)
+            MostrarPeliculaEnColumna(nodoActual->siguiente->siguiente->data, 3);
+        else
+            MostrarPeliculaEnColumna(nodoActual->siguiente->data, 3);
+        fflush(stdin);
+        gotoxy(1, 25);
+        printf("X: Salir. A: Anterior. D: Siguiente.");
+        seleccion = getch();
+        if(tolower(seleccion) == 'a')
+        {
+            nodoActual = nodoActual->anterior;
+            if(nodoActual->data.Id == -1)
+                nodoActual = nodoActual->anterior;
+        }
+        else if(tolower(seleccion) == 'd')
+        {
+            nodoActual = nodoActual->siguiente;
+            if(nodoActual->data.Id == -1)
+                nodoActual = nodoActual->siguiente;
+        }
     }while(tolower(seleccion) != 'x');
 }
 
@@ -319,7 +384,7 @@ void MostrarPeliculaEnColumna(Pelicula aMostrar, int numeroColumna)
 {
     int colActual, i=0;
     if(numeroColumna <= 1)
-        colActual = 0;
+        colActual = 1;
     else if(numeroColumna == 2)
         colActual = COL2;
     else
@@ -329,12 +394,14 @@ void MostrarPeliculaEnColumna(Pelicula aMostrar, int numeroColumna)
     printf("%4.4d - %.*s", aMostrar.Id, LIMCOLUMNA, aMostrar.Titulo);
 
     gotoxy(colActual + 1, 5);
-    printf("%4d - %.1f/10 - %.1fmins.",
-           aMostrar.Anyo, aMostrar.Calificacion, aMostrar.Duracion);
+    printf("%4d - %.1f/10",
+           aMostrar.Anyo, aMostrar.Calificacion);
+    gotoxy(colActual + 1, 6);
+    printf("%.1fmins.", aMostrar.Duracion);
     gotoxy(colActual + 1, 7);
     printf("Clasif.: %.20s", aMostrar.Clasificacion);
     gotoxy(colActual + 1, 9);
-    while(aMostrar.Generos+i != EOF) // o NULL.
+    while(i < aMostrar.CantidadGeneros)
     {
         printf("%.*s", LIMCOLUMNA, *(aMostrar.Generos+i));
         i++;
@@ -346,16 +413,110 @@ void MostrarPeliculaEnColumna(Pelicula aMostrar, int numeroColumna)
 
 void MostrarSinopsis(int col, int fila, int limite, char *texto)
 {
-    int i = 0;
-    while(strlen(texto) > 0)
+    int i = 0, tamano = strlen(texto);
+    char *nuevoTexto = (char*)malloc(sizeof(char*)*tamano);
+    strcpy(nuevoTexto, texto);
+    while(tamano > 0)
     {
         gotoxy(col, fila+i);
-        printf("%.*s", limite, texto);
-        texto = strcpy(texto, texto+limite);//texto+=limite;
+        printf("%.*s", limite, nuevoTexto);
+        nuevoTexto = strcpy(nuevoTexto, nuevoTexto+limite);//texto+=limite;
 
         i++;
+        tamano -= limite;
     }
+    gotoxy(col, fila+i+1);
 }
+
+void ModificarPelicula(Lista *listadoPeliculas)
+{
+    int idPelicula;
+    Nodo *nodoActual;
+    system("cls");
+    MostrarMarco();
+    gotoxy(10, 3);
+    printf("Modificando Pel%ccula Existente.", 161);
+    gotoxy(5, 7);
+    printf("Digite el ID: ");
+    scanf("%d", &idPelicula);
+    nodoActual = BuscarPorId(listadoPeliculas, idPelicula);
+
+    if(nodoActual == NULL)
+    {
+        gotoxy(5, 9);
+        printf("Esta pel%ccula no existe. Presione cualquier tecla para continuar.", 161);
+        fflush(stdin);
+        getch();
+        return;
+    }
+
+    CapturarPelicula(listadoPeliculas, nodoActual, 0);
+}
+
+void BorrarPelicula(Lista *listadoPeliculas)
+{
+    int idPelicula;
+    Nodo *nodoActual;
+    system("cls");
+    MostrarMarco();
+    gotoxy(10, 3);
+    printf("Eliminar Pel%ccula Existente.", 161);
+    gotoxy(5, 7);
+    printf("Digite el ID: ");
+    scanf("%d", &idPelicula);
+    nodoActual = BuscarPorId(listadoPeliculas, idPelicula);
+
+    if(nodoActual == NULL)
+    {
+        gotoxy(5, 9);
+        printf("Esta pel%ccula no existe. Presione cualquier tecla para continuar.", 161);
+        fflush(stdin);
+        getch();
+        return;
+    }
+
+    EliminarPelicula(listadoPeliculas, nodoActual);
+}
+
+void BuscarPeliculaPorAnyo(Lista *listadoPeliculas)
+{
+    int anyo;
+    Nodo *nodoActual;
+    system("cls");
+    MostrarMarco();
+    gotoxy(10, 3);
+    printf("Buscar Pel%ccula Existente por A%co.", 161, 164);
+    gotoxy(5, 7);
+    do
+    {
+        printf("Digite el a%co: ", 164);
+        scanf("%d", &anyo);
+        if(anyo<0)
+            printf("El a%co no puede ser negativo.", 164);
+    }while(anyo<0);
+
+    nodoActual = BuscarPorAnyo(listadoPeliculas, anyo);
+
+    if(nodoActual->data.Id == -1)
+    {
+        gotoxy(5, 9);
+        printf("La lista est%c vac%ca. Presione cualquier tecla para continuar.", 160, 161);
+        fflush(stdin);
+        getch();
+        return;
+    }
+
+    ExplorarPeliculas(listadoPeliculas, nodoActual);
+}
+
+void OrdenarPeliculasPorAnyo(Lista *listadoPeliculas)
+{
+    OrdenarPeliculaSeleccion(listadoPeliculas);
+}
+
+
+
+
 
 
 
