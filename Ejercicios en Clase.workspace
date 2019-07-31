@@ -14,5 +14,7 @@
 		<Project filename="Clase3_PilasEnlazada/Clase3_PilasEnlazada.cbp" />
 		<Project filename="Clase4_Peliculas/Clase4_Peliculas.cbp" />
 		<Project filename="Practica2_Prob1/Practica2_Prob1.cbp" />
+		<Project filename="Clase7_Sudoku/Clase7_Sudoku.cbp" />
+		<Project filename="Clase6_BusquedaOrdenacion/Clase6_BusquedaOrdenacion.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

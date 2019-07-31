@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1563456301 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase6_busquedaordenacion\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

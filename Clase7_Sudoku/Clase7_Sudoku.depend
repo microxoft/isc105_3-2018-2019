@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1563889868 source:z:\repositorios\2018-2019-3 isc-105-t-001\isc105_3-2018-2019\clase7_sudoku\main.c
+	<stdio.h>
+	<stdlib.h>
+
